@@ -47,7 +47,8 @@ func (n *Node) GetSize() uint {
 	return res
 }
 
-func (n *Node) TotalOfSmallDirs(total uint) uint {
+func (n *Node) TotalOfSmallDirs() uint {
+	var total uint
 	if len(n.Children) == 0 {
 		return total
 	}
@@ -58,7 +59,7 @@ func (n *Node) TotalOfSmallDirs(total uint) uint {
 	}
 
 	for _, c := range n.Children {
-		total += c.TotalOfSmallDirs(0)
+		total += c.TotalOfSmallDirs()
 	}
 
 	return total
@@ -177,7 +178,7 @@ func main() {
 	}
 
 	fmt.Printf("total size: %d\n", root.GetSize())
-	fmt.Printf("total size of small dirs: %d\n", root.TotalOfSmallDirs(0))
+	fmt.Printf("total size of small dirs: %d\n", root.TotalOfSmallDirs())
 
 	needToDelete := needSpace + root.GetSize() - filesystemSize
 
